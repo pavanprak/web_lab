@@ -1,0 +1,125 @@
+10 date, prime
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Prime Number Validation</title>
+   </head>
+   <body>
+      <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+         <label>Enter a number: </label>
+         <input type="number" name="num" id="num" required>
+         <input type="submit" value="Check">
+      </form>
+      <?php
+          echo "Today is ".date("d-m-Y")."<br>";
+          echo "Today is ".date("l");
+      ?>
+      <?php
+      if($_SERVER["REQUEST_METHOD"] == "POST"){
+         $num = $_POST["num"];
+         if(isPrime($num)){
+            echo "<p>$num is a prime number.</p>";
+         }else{
+            echo "<p>$num is not a prime number.</p>";
+         }
+      }
+      function isPrime($num)
+      {
+         if($num <= 1){
+            return false;
+         }
+         for($i = 2; $i <= sqrt($num); $i++){
+            if ($num % $i == 0) {
+               return false;
+            }
+        }
+        return true;
+    }
+    ?>
+</body>
+</html>
+
+=========================================================================================================
+11 send to text file
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Submission</title>
+</head>
+<body>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <label>Message:</label><br>
+        <textarea rows="6" cols="50" name="mes" required></textarea><br><br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $mes = $_POST['mes'];
+
+    $file = 'form_data.txt';
+    file_put_contents($file, $mes, FILE_APPEND | LOCK_EX);
+
+    echo "<h2>Form Data:</h2>";
+    echo "<p>Message: $mes</p>";
+    }
+    ?>
+</body>
+</html>
+
+===========================================================================================================
+
+12 login php
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <label>Username:</label>
+        <input type="text" id="uname" name="uname" required>
+        <br><br>
+        <label>Password:</label>
+        <input type="password" id="pass" name="pass" required>
+        <br><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['uname'];
+    $password = $_POST['pass'];
+
+    /*Initially store some username and password by creating a file login.txt ex: Darshan,Darshan1234*/ 
+    $file = 'login.txt';
+    $users = file($file, FILE_IGNORE_NEW_LINES);
+
+    $loginSuccessful = false;
+
+    foreach ($users as $user) {
+        list($storedUsername, $storedPassword) = explode(',', $user);
+        if ($username === $storedUsername && $password === $storedPassword) {
+            $loginSuccessful = true;
+            break;
+        }
+    }
+
+    if ($loginSuccessful) {
+        echo "<h2>Login Successful!</h2>";
+        echo "<p>Welcome, $username!</p>";
+    } else {
+        echo "<h2>Login Failed!</h2>";
+        echo "<p>Invalid username or password.</p>";
+    }
+    }
+    ?>
+
+</body>
+</html>
+====================================================================================================

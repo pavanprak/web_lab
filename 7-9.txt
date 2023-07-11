@@ -1,0 +1,255 @@
+7a calc
+
+<!DOCTYPE html>  
+<html lang = "en">  
+    <head>
+        <title> JavaScript Calculator </title>
+        <style>
+            .calc {
+                background-color: blue;
+                 
+            }
+            .display-box {
+                background-color: white;
+                color: black;
+            }
+            input[type=button] {
+                background-color: green;
+                color: white;
+            }
+            input:active[type=button] {
+                background: white;
+            }
+            #btn {
+                background-color: red;
+            }
+        </style>
+    </head>  
+    <body>  
+        <h1> Calculator</h1>  
+        <table class="calc" >
+            <tr>
+                <td colspan="3"> <input class="display-box" type="text" id="result" disabled /> </td>   
+                <td> <input type="button" value="Clear" onclick="clearScreen()" id="btn" /> </td>
+            </tr>
+            <tr>
+                <td> <input type="button" value="1" onclick="display('1')" /> </td>
+                <td> <input type="button" value="2" onclick="display('2')" /> </td>
+                <td> <input type="button" value="3" onclick="display('3')" /> </td>
+                <td> <input type="button" value="+" onclick="display('+')" /> </td>
+            </tr>
+            <tr>
+                <td> <input type="button" value="4" onclick="display('4')" /> </td>
+                <td> <input type="button" value="5" onclick="display('5')" /> </td>
+                <td> <input type="button" value="6" onclick="display('6')" /> </td>
+                <td> <input type="button" value="-" onclick="display('-')" /> </td>
+            </tr>
+            <tr>
+                <td> <input type="button" value="7" onclick="display('7')" /> </td>
+                <td> <input type="button" value="8" onclick="display('8')" /> </td>
+                <td> <input type="button" value="9" onclick="display('9')" /> </td>
+                <td> <input type="button" value="*" onclick="display('*')" /> </td>
+            </tr>
+            <tr>
+                <td> <input type="button" value="." onclick="display('.')" /> </td>
+                <td> <input type="button" value="0" onclick="display('0')" /> </td>
+                <td> <input type="button" value="/" onclick="display('/')" /> </td>
+                <td> <input type="button" value="=" onclick="calculate()" id="btn" /> </td>
+            </tr>
+        </table>
+        <script>
+            function clearScreen() {
+                document.getElementById("result").value = "";
+            }
+            function display(value) {
+                document.getElementById("result").value += value;
+            }
+            function calculate() {
+                var p = document.getElementById("result").value;
+                var q = eval(p);
+                document.getElementById("result").value = q;
+            }
+        </script>
+    </body>  
+</html>
+
+
+-------------------------------------------------------------------------------------------
+7 b fav color form
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>JS validation</title>
+    </head>
+    <body>
+        <form name="myform" onsubmit="return validateform()">
+            <label>Name : </label>
+            <input type="text" id="name" name="name" placeholder="Full name"><br>
+            <label>Email : </label>
+            <input type="email" id="mail" name="email" placeholder="Mail"><br>
+            <label>Mobile no. : </label>
+            <input type="number" id="mobile" name="mobile"><br>
+            <label>Gender : </label>
+            <select name = "gender">
+                <option value = "Choose" selected>[Choose Yours]</option>
+                <option value = "Male">Male</option>
+                <option value = "Female">Female</option>
+                <option value = "Others">Others</option>
+             </select><br>
+            <label>Favourite colour : </label>
+            <input type="text" id="favc" name="favc"><br>
+            <input type="submit" value="submit"><br>
+        </form>
+        
+        <script>
+            function validateform(){  
+                var name=document.myform.name.value;  
+                var mobile=document.myform.mobile.value;  
+                var mail=document.myform.mail.value;
+                var gender=document.myform.gender.value; 
+                var atposition=mail.includes("@");  
+                var dotposition=mail.endsWith(".com"); 
+                var favc = document.myform.favc.value;
+                var check = /^[a-zA-Z]+$/;
+                var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+                if(!regName.test(name)){
+                    alert('Please enter a valid name.');
+                    return false;
+                }else if ((!atposition)||(!dotposition) ){  
+                    alert("Please enter a valid e-mail address");  
+                    return false;  
+                }else if(mobile.length<10){  
+                    alert("Mobile no. must be 10 characters long.");  
+                    return false;  
+                }else if( gender == "Choose" ) {
+                    alert("Please provide your gender!");
+                    return false;
+                }else if(!check.test(favc)) {
+                    alert("Please enter valid colour!");
+                    return false;
+                }
+                document.write("Name : "+name);
+                document.write("<br>Email : "+mail);
+                document.write("<br>Mobile no. : "+mobile);
+                document.write("<br>Gender : "+gender);
+                document.write("<br>Favourite colour : "+favc);
+            }
+        </script>
+    </body>
+</html>
+
+===========================================================================================
+
+8 avg marks
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Student details</title>
+          <script type="text/javascript">
+            function evals(){
+               var t1 = parseInt(document.forms["myform"]["t1"].value);
+               var t2 = parseInt(document.forms["myform"]["t2"].value);
+               var t3 = parseInt(document.forms["myform"]["t3"].value);
+               var reg = document.forms["myform"]["regno"].value;
+               var sub = document.forms["myform"]["sub"].value;
+               if(reg == "") {
+                   alert( "Please enter register no." );
+                   return false;
+               }else if(sub == "") {
+                   alert( "Please enter subject code" );
+                   return false;
+               }else if(t1>20 || t2>20 || t3 >20){
+                   alert("Invalid Marks. Marks range : 0 - 20.Enter Again.");
+                   return false;
+               }else if(isNaN(t1)){
+                   alert("Please provide Test-1 marks");
+                   return false;
+               }else if(isNaN(t2)){
+                   alert("Please provide Test-2 marks");
+                   return false;
+               }else if(isNaN(t3)){
+                   alert("Please provide Test-3 marks");
+                   return false;
+               }
+               var max1 = Math.max(t1,t2,t3);
+               var min = Math.min(t1,t2,t3);
+               var max2 = t1+t2+t3-max1-min;
+               var avg = eval((max1+max2)/2);
+               alert("Avarage marks : "+avg);
+            }
+         </script>
+      </head>
+      <body>
+          <h1>Enter marks details: </h1>
+          <form name="myform" onsubmit="return evals()">
+              <label>Register Number : </label>
+              <input type="text" name="regno" id ="regno" /><br/>
+              <label>Subject code : </label>
+              <input type="text" name="sub" id ="sub" /><br/>
+              <label>Test-1: </label>
+              <input type="number" id="t1" name="t1"/><br/>       
+              <label>Test-2: </label>
+              <input type="number" id="t2" name="t2"/><br/>
+              <label>Test-3: </label>
+              <input type="number" id="t3" name="t3"/><br/>
+              <input type="submit" value="submit" />
+          </form>
+      </body>
+</html>
+===========================================================================================
+
+9 form userid,name passward,email
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Register</title>
+      <script type="text/javascript">
+        function evals(){
+           var uid = document.forms["myform"]["uid"].value;
+           var name = document.forms["myform"]["name"].value;
+           var pass = document.forms["myform"]["pass"].value;
+           var mail = document.forms["myform"]["mail"].value;
+           var check = /^[a-zA-Z]+ [a-zA-Z]+$/;
+           var atposition=mail.indexOf("@");  
+           var dotposition=mail.lastIndexOf(".");
+           var passw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?])[A-Za-z\d@$!%*?]{8}$/;
+           if(uid == "" || uid.length &lt; 5 || uid.length > 12) {
+               alert( "Please enter user id, User id should be of 5 to 12 characters");
+               return false;
+           }else if(!check.test(name)){
+               alert('Please enter a valid name. Name should not be less than 15 characters');
+               return false;
+           }else if(pass.length &lt; 8){  
+               alert("Password must be at least 8 characters long. Try again!");  
+               return false;  
+           }else if(!passw.test(pass)){
+               alert("Password must be eight characters including one uppercase letter, one special character and alphanumeric characters");
+               return false;
+           }else if(atposition &lt; 1 || dotposition&lt;atposition+2 || dotposition+2 >= mail.length){  
+               alert("Please enter a valid e-mail address \n atpostion:"+atposition+"\n dotposition:"+dotposition);  
+               return false;  
+           }
+           alert("User Id : "+uid+"\n Name : "+name+"\n Password : "+pass+"\n E-mail : "+mail);
+        }
+     </script>
+  </head>
+  <body>
+      <h1>Enter details: </h1>
+      <form name="myform" onsubmit="return evals()">
+          <label>User Id : </label>
+          <input type="text" name="uid" id ="uid" /><br/>
+          <label>Name : </label>
+          <input type="text" name="name" id ="name" placeholder="Full name"/><br/>
+          <label>Password : </label>
+          <input type="text" id="pass" name="pass"/><br/>      
+          <label>E-mail: </label>
+          <input type="email" id="mail" name="mail"/><br/>
+          <input type="submit" value="submit" />
+      </form>
+  </body>
+</html>
